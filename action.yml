@@ -11,15 +11,6 @@ description: 'Runs the tests for a Ruby on Rails application'
 #     value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: "composite"
-  services:
-    postgres:
-      image: postgres:11-alpine
-      ports:
-        - "5432:5432"
-      env:
-        POSTGRES_DB: rails_test
-        POSTGRES_USER: rails
-        POSTGRES_PASSWORD: password
   env:
     RAILS_ENV: test
     DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"

@@ -1,27 +1,17 @@
 name: 'Rails Tests'
 description: 'Runs the tests for a Ruby on Rails application'
-# inputs:
-#   who-to-greet:  # id of input
-#     description: 'Who to greet'
-#     required: true
-#     default: 'World'
-# outputs:
-#   random-number:
-#     description: "Random number"
-#     value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: "composite"
   steps:
     - name: Checkout code
       uses: actions/checkout@v2
-        # Add or replace dependency steps here
     - name: Install Ruby and gems
-      uses: ruby/setup-ruby@8f312efe1262fb463d906e9bf040319394c18d3e # v1.92
+      uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
-          # Add or replace database setup steps here
     - name: Set up database schema
       run: bin/rails db:schema:load
-        # Add or replace test runners here
+      shell: bash
     - name: Run tests
       run: bin/rake
+      shell: bash
